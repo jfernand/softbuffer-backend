@@ -1,31 +1,16 @@
-//! A standalone screen-capture tool: a `winit` + `softbuffer` window that
-//! renders a `ratatui`-style monospace grid directly to its own pixel
-//! surface, with no external terminal emulator involved.
+//! Glyph rasterization and a `ratatui` [`backend::Backend`](ratatui::backend::Backend)
+//! that renders directly into a `winit` window via `softbuffer` — no
+//! terminal emulator, PTY, or ANSI escape sequences involved.
 //!
-//! This crate is currently application-shaped rather than a general-purpose
-//! library — [`run`] opens a window and drives its event loop until the
-//! window is closed. The [`glyph`] and [`backend`] modules (glyph
-//! rasterization/the monospace cell grid, and the `ratatui` `Backend` built
-//! on top of it) are the reusable parts and are documented as such.
-//!
-//! # Examples
-//!
-//! ```no_run
-//! prtsc::run();
-//! ```
+//! [`glyph`] rasterizes an embedded monospace font into a fixed cell grid;
+//! [`backend`] builds a `ratatui` backend on top of it. Together these are
+//! the reusable rendering layer — the application shell (event loop, input
+//! handling, window-picker UI) lives in the separate `prtsc` crate, which
+//! depends on this one.
+
 #![warn(missing_docs)]
 
-/// The application window and its event loop.
-pub mod app;
-/// A `ratatui` `Backend` that renders into the window directly.
+/// A `ratatui` `Backend` that renders into a `winit` window directly.
 pub mod backend;
 /// Glyph rasterization and the monospace cell grid.
 pub mod glyph;
-// Key-event-to-app-action mapping; internal to `app`, not part of the
-// reusable public API.
-mod input;
-
-/// Opens the application window and runs its event loop until closed.
-///
-/// See [`app::run`] for details.
-pub use app::run;
