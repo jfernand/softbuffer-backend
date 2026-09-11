@@ -1,10 +1,11 @@
 [package]
 name = "softbuffer-backend"
-version.workspace = true
-edition.workspace = true
-rust-version.workspace = true
-license.workspace = true
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.89"
+license = "MIT OR Apache-2.0"
 description = "Glyph rasterization and a ratatui Backend that renders directly into a winit window via softbuffer"
+keywords = ["ratatui", "backend"]
 
 [dependencies]
 fontdue = "0.9.4"
