@@ -1,6 +1,6 @@
 [package]
 name = "softbuffer-backend"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 rust-version = "1.89"
 license = "MIT OR Apache-2.0"
@@ -8,7 +8,7 @@ description = "Glyph rasterization and a ratatui Backend that renders directly i
 repository = "https://github.com/jfernand/softbuffer-backend"
 readme = "README.md"
 keywords = ["ratatui", "backend"]
-categories = ["gui", "rendering"]
+categories = ["tui", "rendering"]
 
 [dependencies]
 fontdue = "0.9.4"
